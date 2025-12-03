@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: ride-service
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5434/routes
+    username: user
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    database: postgresql
+    show-sql: true
+
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true

@@ -1,0 +1,13 @@
+services:
+  postgres:
+    platform: linux/amd64
+    image: postgis/postgis
+    restart: always
+    environment:
+      POSTGRES_DB: routes
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5434:5432"
+    volumes:
+      - .data/routeData:/var/lib/postgresql/data
