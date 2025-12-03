@@ -1,14 +1,17 @@
 package me.poberi.routeservice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import org.locationtech.jts.geom.Point;
 
+import java.time.LocalDateTime;
+
 @Entity
+@Table(name = "routes")
 @Builder
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Route {
@@ -16,7 +19,8 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(columnDefinition = "geometry(Point, 4326)")
-    private Point startPoint;
+    private Point startLocation;
     @Column(columnDefinition = "geometry(Point, 4326)")
-    private Point endPoint;
+    private Point endLocation;
+    private LocalDateTime startTime;
 }
