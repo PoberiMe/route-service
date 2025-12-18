@@ -1,6 +1,7 @@
 package me.poberi.routeservice.service;
 
 import lombok.RequiredArgsConstructor;
+import me.poberi.routeservice.dto.MatchRequest;
 import me.poberi.routeservice.dto.RouteRequest;
 import me.poberi.routeservice.dto.RouteResponse;
 import me.poberi.routeservice.mapper.RouteMapper;
@@ -11,6 +12,8 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,5 +38,39 @@ public class RouteService {
         route.setStartTime(req.getStartTime());
 
         return routeMapper.toResponse(routeRepository.save(route));
+    }
+
+    public List<RouteResponse> matchRoutes(MatchRequest req) {
+
+        Point start = geometryFactory.createPoint(
+                new Coordinate(
+                        req.getStartLocation().longitude(),
+                        req.getStartLocation().latitude()
+                )
+        );
+        start.setSRID(4326);
+
+        Point end = geometryFactory.createPoint(
+                new Coordinate(
+                        req.getEndLocation().longitude(),
+                        req.getEndLocation().latitude()
+                )
+        );
+        end.setSRID(4326);
+
+        List<Route> resultList = routeRepository.findMatchingRoutes(
+                start,
+                end,
+                req.getRadius()
+        );
+
+        List<RouteResponse> responseList = new java.util.ArrayList<>();
+
+        for (Route route : resultList) {
+            responseList.add(routeMapper.toResponse(route));
+        }
+
+        return responseList;
+
     }
 }
