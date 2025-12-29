@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class MatchRequest {
     private Location startLocation;
     private Location endLocation;
-    //private LocalDateTime startTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private double radius;
 }

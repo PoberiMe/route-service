@@ -25,11 +25,11 @@ public class RouteService {
 
     public RouteResponse createRoute(RouteRequest req) {
         Point startLocation = geometryFactory.createPoint(
-                new Coordinate(req.getStartLocation().longitude(), req.getStartLocation().latitude()));
+                new Coordinate(req.getStartLocation().lng(), req.getStartLocation().lat()));
         startLocation.setSRID(4326);
 
         Point endLocation = geometryFactory.createPoint(
-                new Coordinate(req.getEndLocation().longitude(), req.getEndLocation().latitude()));
+                new Coordinate(req.getEndLocation().lng(), req.getEndLocation().lat()));
         endLocation.setSRID(4326);
 
         Route route = new Route();
@@ -37,6 +37,8 @@ public class RouteService {
         route.setStartLocation(startLocation);
         route.setStartTime(req.getStartTime());
         route.setRouteId(req.getRideId());
+        route.setStartName(req.getStartName());
+        route.setEndName(req.getEndName());
 
         return routeMapper.toResponse(routeRepository.save(route));
     }
@@ -45,16 +47,16 @@ public class RouteService {
 
         Point start = geometryFactory.createPoint(
                 new Coordinate(
-                        req.getStartLocation().longitude(),
-                        req.getStartLocation().latitude()
+                        req.getStartLocation().lng(),
+                        req.getStartLocation().lat()
                 )
         );
         start.setSRID(4326);
 
         Point end = geometryFactory.createPoint(
                 new Coordinate(
-                        req.getEndLocation().longitude(),
-                        req.getEndLocation().latitude()
+                        req.getEndLocation().lng(),
+                        req.getEndLocation().lat()
                 )
         );
         end.setSRID(4326);
@@ -62,7 +64,9 @@ public class RouteService {
         List<Route> resultList = routeRepository.findMatchingRoutes(
                 start,
                 end,
-                req.getRadius()
+                req.getRadius(),
+                req.getStartTime(),
+                req.getEndTime()
         );
 
         List<RouteResponse> responseList = new java.util.ArrayList<>();

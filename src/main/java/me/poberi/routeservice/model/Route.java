@@ -20,8 +20,10 @@ public class Route {
     private Long id;
     @Column(columnDefinition = "geometry(Point, 4326)")
     private Point startLocation;
+    private String startName;
     @Column(columnDefinition = "geometry(Point, 4326)")
     private Point endLocation;
+    private String endName;
     private LocalDateTime startTime;
     Long routeId;
 }

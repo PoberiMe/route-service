@@ -13,7 +13,9 @@ public class RouteMapper {
         return new RouteResponse(
                 route.getId(),
                 toLocation(route.getStartLocation()),
+                route.getStartName(),
                 toLocation(route.getEndLocation()),
+                route.getEndName(),
                 route.getStartTime(),
                 route.getRouteId()
         );
@@ -21,7 +23,7 @@ public class RouteMapper {
 
     private Location toLocation(Point point) {
         return new Location(
-                point.getY(), // latitude
+                point.getY(), // lat
                 point.getX()
         );
     }

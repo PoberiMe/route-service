@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 public class RouteResponse {
     private Long id;
     private Location startLocation;
+    private String startName;
     private Location endLocation;
+    private String endName;
     private LocalDateTime startTime;
     private Long rideId;
 }

@@ -1,6 +1,6 @@
 package me.poberi.routeservice.dto;
 
 public record Location(
-        double latitude,
-        double longitude
+        double lat,
+        double lng
 ) {}
