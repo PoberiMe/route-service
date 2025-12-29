@@ -36,6 +36,7 @@ public class RouteService {
         route.setEndLocation(endLocation);
         route.setStartLocation(startLocation);
         route.setStartTime(req.getStartTime());
+        route.setRouteId(req.getRideId());
 
         return routeMapper.toResponse(routeRepository.save(route));
     }

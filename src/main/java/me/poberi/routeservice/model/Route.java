@@ -23,4 +23,5 @@ public class Route {
     @Column(columnDefinition = "geometry(Point, 4326)")
     private Point endLocation;
     private LocalDateTime startTime;
+    Long routeId;
 }

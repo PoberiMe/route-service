@@ -14,7 +14,8 @@ public class RouteMapper {
                 route.getId(),
                 toLocation(route.getStartLocation()),
                 toLocation(route.getEndLocation()),
-                route.getStartTime()
+                route.getStartTime(),
+                route.getRouteId()
         );
     }
 

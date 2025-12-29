@@ -14,4 +14,5 @@ public class RouteResponse {
     private Location startLocation;
     private Location endLocation;
     private LocalDateTime startTime;
+    private Long rideId;
 }

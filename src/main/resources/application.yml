@@ -1,10 +1,10 @@
 spring:
   application:
-    name: ride-service
+    name: route-service
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5434/routes
+    url: jdbc:postgresql://localhost:5432/routes
     username: user
     password: password
 
