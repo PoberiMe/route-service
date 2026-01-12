@@ -22,3 +22,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+
+cors:
+  allowed-origin: http://localhost:4200
